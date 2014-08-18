@@ -4,6 +4,8 @@ import os, sys, glob, getopt
 import os.path
 import re
 
+print os.path.splitext("path_to_file")[0]
+
 
 class clean_songs_name():
 
@@ -17,9 +19,9 @@ class clean_songs_name():
 	
 	def clean_file_name(self, dirpath, newdirname, filename):
 		p = re.I
-		p = re.compile('(_)|(2013)|(2012)|(2010)|(2011)|(2009)|(Songs)|(128)|(320)|(Kbps)|(.PK)|(\()|(\)|(-))|(\[)|(\])|(www.?)|(www)|('+newdirname+')')
+		p = re.compile('(_)|(2014)|(2013)|(2012)|(2010)|(2011)|(2009)|(Songs)|(128)|(320)|(Kbps)|(.PK)|(\()|(\)|(-))|(\[)|(\])|(www.?)|(www)|('+newdirname+')')
 		if os.path.basename(filename).endswith('.mp3'):
-			newfilename = p.sub (' ', os.path.basename(filename))
+			newfilename = p.sub ('', os.path.basename(filename))
 			p = re.compile('(\s+)')
 			newfilename = p.sub (' ', newfilename)
 			p = re.compile('(\/\s+)')
@@ -32,13 +34,12 @@ class clean_songs_name():
 				if newfilename == "":
 					newfilename = newdirname + index
 					self.index += 1
-
-				os.rename(filename, dirname+"/"+newfilename)
-				return newfilename					
+                os.rename(filename, dirname+"/"+newfilename)
+                return newfilename					
 
 	def clean_directory_name(self, dirpath, dirname):
 		p = re.I
-		p = re.compile('(_)|(2013)|(2012)|(2010)|(2011)|(2009)|(Songs)|(128)|(320)|(Kbps)|(WWW.?)|(.PK)|(\()|(\)|(-))')
+		p = re.compile('(_)|(2014)|(2013)|(2012)|(2010)|(2011)|(2009)|(Songs)|(128)|(320)|(Kbps)|(WWW.?)|(.PK)|(\()|(\)|(-))')
 		newdirname = p.sub (' ', dirname)
 		p = re.compile('(\s+)')
 		newdirname = p.sub (' ', newdirname)
